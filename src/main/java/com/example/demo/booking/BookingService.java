@@ -26,20 +26,20 @@ public class BookingService {
 
 
 
-    public Booking enterBooking( Booking booking ) {
+    public String enterBooking(Booking booking ) {
         String treckId = booking.getTreckId();
         List<Trecks> listByTreckId = trecksService.getTrailByTreckId(treckId);
         Trecks object = listByTreckId.get(0);
         if (listByTreckId.isEmpty()){
-            System.out.println("No Booking Found");
+            return "No Booking Found";
         }
-        if ( booking.getPersonAge() <= object.getMaximumAge()
-                && booking.getPersonAge() >= object.getMinimumAge()){
-            Booking b = new Booking();
+        if ( booking.getPersonAge() >= object.getMaximumAge()
+                && booking.getPersonAge() <= object.getMinimumAge()){
+            return "No Booking Found";
         }
+            repository.save(booking);
+        return "Booking Added";
 
-        return repository.save(booking);
-//        return "Added booking with id: " + booking.getId();
     }
 
 

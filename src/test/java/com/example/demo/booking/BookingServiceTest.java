@@ -65,26 +65,26 @@ class BookingServiceTest {
         assertThat(response.size()).isEqualTo(bookingList.size());
 //       ViewBooking
     }
-    @Test
-    void enterBooking(){
-        Booking PIB1 = new Booking();
-
-        PIB1.setBookingId("P1B1");
-        PIB1.setPersonId("Person1");
-        PIB1.setTreckName("Blue Falls");
-        PIB1.setTreckId("Treck1");
-        PIB1.setPersonAge(60);
-
-        Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
-        Booking response = bookingService.enterBooking(PIB1);
-        assertThat(response).isEqualTo(PIB1);
+//    @Test
+//    void enterBooking(){
+//        Booking PIB1 = new Booking();
+//
+//        PIB1.setBookingId("P1B1");
+//        PIB1.setPersonId("Person1");
+//        PIB1.setTreckName("Blue Falls");
+//        PIB1.setTreckId("Treck1");
+//        PIB1.setPersonAge(60);
+//
+//        Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
+//        Booking response = bookingService.enterBooking(PIB1);
+//        assertThat(response).isEqualTo(PIB1);
 
 
 //        Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
 //        Booking response = bookingService.enterBooking();
 //        assertThat(bookingService.enterBooking(PIB1)).isEqualTo(PIB1);
 
-    }
+//    }
 
 //    @Test
 //    void deleteBooking(){
