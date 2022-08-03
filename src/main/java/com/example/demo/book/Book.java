@@ -1,4 +1,4 @@
-package com.example.demo.treckk.book;
+package com.example.demo.book;
 
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;

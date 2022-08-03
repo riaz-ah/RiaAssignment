@@ -1,6 +1,7 @@
-package com.example.demo.treckk.book;
+package com.example.demo.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class BookService {
 @Autowired
     private BookRepository repository;
+
 
     public String saveBook( Book book) {
         repository.save(book);

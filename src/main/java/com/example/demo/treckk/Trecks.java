@@ -10,7 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Trecks")
 public class Trecks {
     @Id
-    private String Id;
+    private String id;
+
+    private String treckId;
     private String name;
     private String startAt;
     private String endAt;
