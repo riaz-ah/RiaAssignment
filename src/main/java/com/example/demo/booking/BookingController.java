@@ -23,7 +23,7 @@ public class BookingController {
         bookingService.enterBooking(booking);
         return ResponseEntity.status(200)
                 .header("message", "record saved")
-                .body("Added booking with id: " + booking.getId());
+                .body("Added booking with id: " + booking.getBookingId());
     }
 
     @DeleteMapping("/deleteBookingById/{bookingId}")
