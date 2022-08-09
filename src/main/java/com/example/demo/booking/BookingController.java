@@ -19,11 +19,11 @@ public class BookingController {
     }
 
     @PostMapping("/enterBooking")
-    public ResponseEntity <?> enterBooking(@RequestBody Booking booking) {
-        bookingService.enterBooking(booking);
+    public ResponseEntity <?> enterBooking(@RequestBody Booking booking) throws InvalidAgeException, EmptyListCheckException {
+        String bookingResult = bookingService.enterBooking(booking);
         return ResponseEntity.status(200)
                 .header("message", "record saved")
-                .body("Added booking with id: " + booking.getBookingId());
+                .body(bookingResult + booking.getBookingId());
     }
 
     @DeleteMapping("/deleteBookingById/{bookingId}")
@@ -56,10 +56,10 @@ public class BookingController {
     }
 
     @GetMapping("/getBookingByTreckName/{treckName}")
-    public ResponseEntity<?> getBookingsByTreckName(@PathVariable String treckId){
+    public ResponseEntity<?> getBookingsByTreckName(@PathVariable String treckName){
         return ResponseEntity.status(200)
                 .header("message", "Booking found using treckName")
-                .body(bookingService.getBookingsByTreckId(treckId));
+                .body(bookingService.getBookingsByTreckName(treckName));
     }
 
 

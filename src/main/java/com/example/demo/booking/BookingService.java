@@ -26,22 +26,22 @@ public class BookingService {
 
 
 
-    public String enterBooking(Booking booking ) {
-        String treckId = booking.getTreckId();
-        List<Trecks> listByTreckId = trecksService.getTrailByTreckId(treckId);
-        if (listByTreckId.isEmpty()){
-            return "No Booking Found";
-        }
-        Trecks object = listByTreckId.get(0);
-        System.out.println(object.getMaximumAge());
-        System.out.println(object.getMinimumAge());
-        System.out.println(booking.getPersonAge());
-        if ( booking.getPersonAge() >= object.getMaximumAge() &&
-                booking.getPersonAge() <= object.getMinimumAge()){
-            return "Invalid Age";
-        }
-        repository.save(booking);
-        return "Booking Added";
+    public String enterBooking(Booking booking ) throws EmptyListCheckException, InvalidAgeException {
+            String treckId = booking.getTreckId();
+            List<Trecks> listByTreckId = trecksService.getTrailByTreckId(treckId);
+            if (listByTreckId.isEmpty()) {
+//                return "No Booking Found";
+                throw new EmptyListCheckException("No Booking Found");
+            }
+//            throw new EmptyListCheckException("No Booking Found");
+            Trecks object = listByTreckId.get(0);
+            if (booking.getPersonAge() >= object.getMaximumAge() ||
+                    booking.getPersonAge() <= object.getMinimumAge()) {
+//                return "Invalid Age";
+                throw new InvalidAgeException("Invalid Age");
+            }
+            repository.save(booking);
+            return "Booking Added";
     }
 
 

@@ -9,9 +9,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.testng.Assert;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -66,7 +69,7 @@ class BookingServiceTest {
 //       ViewBooking
     }
     @Test
-    void enterBooking(){
+    void enterBooking() throws InvalidAgeException, EmptyListCheckException {
         Booking PIB1 = new Booking();
 
         PIB1.setBookingId("P1B1");
@@ -84,6 +87,7 @@ class BookingServiceTest {
         Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
         String response = bookingService.enterBooking(PIB1);
         assertThat(response).isEqualTo("Booking Added");
+
 //        Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
 //        Booking response = bookingService.enterBooking();
 //        assertThat(bookingService.enterBooking(PIB1)).isEqualTo(PIB1);
@@ -92,7 +96,7 @@ class BookingServiceTest {
 
 
     @Test
-    void enterBookingWithEmptyList() {
+    void enterBookingWithEmptyList() throws InvalidAgeException, EmptyListCheckException {
         Booking PIB1 = new Booking();
 
         PIB1.setBookingId("P1B1");
@@ -103,12 +107,18 @@ class BookingServiceTest {
 
         List<Trecks> L = new ArrayList<>();
         Mockito.when(trecksService.getTrailByTreckId("Treck1")).thenReturn(L);
-        String response = bookingService.enterBooking(PIB1);
-        assertThat(response).isEqualTo("No Booking Found");
+//            String response = bookingService.enterBooking(PIB1);
+        Exception exception = assertThrows(EmptyListCheckException.class, () -> {
+            bookingService.enterBooking(PIB1);
+        });
+        Assert.assertEquals(exception.getMessage(), "No Booking Found");
+
+//        assertThat(response).isEqualTo("No Booking Found");
+
     }
 
     @Test
-    void enterBookingForInvalidAge(){
+    void enterBookingForInvalidAge() throws InvalidAgeException, EmptyListCheckException {
         Booking PIB1 = new Booking();
 
         PIB1.setBookingId("P1B1");
@@ -124,8 +134,13 @@ class BookingServiceTest {
         List<Trecks> L = new ArrayList<>();
         L.add(T);
         Mockito.when(trecksService.getTrailByTreckId("Treck1")).thenReturn(L);
-        String response = bookingService.enterBooking(PIB1);
-        assertThat(response).isEqualTo("Booking Added");
+//        String response = bookingService.enterBooking(PIB1);
+        Exception exception = assertThrows(InvalidAgeException.class, () -> {
+            bookingService.enterBooking(PIB1);
+        });
+        Assert.assertEquals(exception.getMessage(), "Invalid Age");
+
+//        assertThat(response).isEqualTo("Invalid Age");
     }
 
     //        Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
@@ -133,22 +148,21 @@ class BookingServiceTest {
 //        assertThat(bookingService.enterBooking(PIB1)).isEqualTo(PIB1);
 
 
-
-//    @Test
-//    void deleteBooking(){
-//        Booking PIB1 = new Booking();
-//
-//        PIB1.setBookingId("P1B1");
-//        PIB1.setPersonId("Person1");
-//        PIB1.setTreckName("Blue Falls");
-//        PIB1.setTreckId("Treck1");
-//        PIB1.setPersonAge(60);
-//        bookingService.deleteBooking("P1B1");
-//        Mockito.verify(bookingRepository,Mockito.atLeastOnce()).delete("P1B1");
-////r
-//    }
     @Test
-    void getByPersonId(){
+    void deleteBooking(){
+        Booking P1B1 = new Booking();
+
+        P1B1.setBookingId("P1B1");
+        P1B1.setPersonId("Person1");
+        P1B1.setTreckName("Blue Falls");
+        P1B1.setTreckId("Treck1");
+        P1B1.setPersonAge(60);
+        bookingService.deleteBooking("P1B1");
+        Mockito.verify(bookingRepository,Mockito.atLeastOnce()).deleteById("P1B1");
+
+    }
+    @Test
+    void getByPersonId (){
         Booking PIB1 = new Booking();
 
         PIB1.setBookingId("P1B1");
