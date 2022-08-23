@@ -12,13 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @ExtendWith(MockitoExtension.class)
-class TrecksServiceTest {
-    private TrecksService trecksService;
+class TreksServiceTest {
+    private TreksService treksService;
     @Mock
     private TrecksRepository trecksRepository;
     @BeforeEach
     void init(){
-        trecksService = new TrecksService(trecksRepository);
+        treksService = new TreksService(trecksRepository);
     }
     @Test
     void testEnterTrails(){
@@ -32,7 +32,7 @@ class TrecksServiceTest {
         treck1.setMaximumAge(100);
         treck1.setUnitPrice(2900);
         Mockito.when(trecksRepository.save(treck1)).thenReturn(treck1);
-        assertThat(trecksService.enterTrail(treck1)).isEqualTo(treck1);
+        assertThat(treksService.enterTrail(treck1)).isEqualTo(treck1);
     }
     @Test
     void testViewTrails(){
@@ -60,7 +60,7 @@ class TrecksServiceTest {
         trecksList.add(treck2);
         trecksList.add(treck3);
         Mockito.when(trecksRepository.findAll()).thenReturn(trecksList);
-        List<Trecks> response = trecksService.ViewTrails();
+        List<Trecks> response = treksService.ViewTrails();
         assertThat(response.size()).isEqualTo(trecksList.size());
         assertThat(response).isEqualTo(trecksList);
 
@@ -80,7 +80,7 @@ class TrecksServiceTest {
         List<Trecks> trecksList2 = new ArrayList<>();
         trecksList2.add(T1);
         Mockito.when(trecksRepository.findByTreckId("treck1")).thenReturn(trecksList2);
-        List<Trecks> response = trecksService.getTrailByTreckId("treck1");
+        List<Trecks> response = treksService.getTrailByTreckId("treck1");
         assertThat(response).isEqualTo(trecksList2);
 //        why not..........findTrail("treck1")  ??
     }
@@ -100,7 +100,7 @@ class TrecksServiceTest {
         List<Trecks> trecksList3 = new ArrayList<>();
         trecksList3.add(T2);
         Mockito.when(trecksRepository.findByName("treck1")).thenReturn(trecksList3);
-        List<Trecks> response = trecksService.findTrail("treck1");
+        List<Trecks> response = treksService.findTrail("treck1");
         assertThat(response.size()).isEqualTo(trecksList3.size());
         assertThat(response).isEqualTo(trecksList3);
 //        Why not..........getTrail("name")  ??

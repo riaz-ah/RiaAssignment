@@ -1,8 +1,9 @@
 package com.example.demo.booking;
 
+import com.example.demo.Exceptions.EmptyListCheckException;
+import com.example.demo.Exceptions.InvalidAgeException;
 import com.example.demo.treckk.Trecks;
-import com.example.demo.treckk.TrecksRepository;
-import com.example.demo.treckk.TrecksService;
+import com.example.demo.treckk.TreksService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,12 +25,12 @@ class BookingServiceTest {
     @Mock
     private BookingRepository bookingRepository;
     @Mock
-    private TrecksService trecksService;
+    private TreksService treksService;
 
 
     @BeforeEach
     void init(){
-        bookingService = new BookingService(bookingRepository,trecksService);
+        bookingService = new BookingService(bookingRepository, treksService);
     }
 
     @Test
@@ -83,7 +84,7 @@ class BookingServiceTest {
         T.setMaximumAge(100);
         List<Trecks> L = new ArrayList<>();
         L.add(T);
-        Mockito.when(trecksService.getTrailByTreckId("Treck1")).thenReturn(L);
+        Mockito.when(treksService.getTrailByTreckId("Treck1")).thenReturn(L);
         Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
         String response = bookingService.enterBooking(PIB1);
         assertThat(response).isEqualTo("Booking Added");
@@ -106,7 +107,7 @@ class BookingServiceTest {
         PIB1.setPersonAge(60);
 
         List<Trecks> L = new ArrayList<>();
-        Mockito.when(trecksService.getTrailByTreckId("Treck1")).thenReturn(L);
+        Mockito.when(treksService.getTrailByTreckId("Treck1")).thenReturn(L);
 //            String response = bookingService.enterBooking(PIB1);
         Exception exception = assertThrows(EmptyListCheckException.class, () -> {
             bookingService.enterBooking(PIB1);
@@ -133,7 +134,7 @@ class BookingServiceTest {
 
         List<Trecks> L = new ArrayList<>();
         L.add(T);
-        Mockito.when(trecksService.getTrailByTreckId("Treck1")).thenReturn(L);
+        Mockito.when(treksService.getTrailByTreckId("Treck1")).thenReturn(L);
 //        String response = bookingService.enterBooking(PIB1);
         Exception exception = assertThrows(InvalidAgeException.class, () -> {
             bookingService.enterBooking(PIB1);

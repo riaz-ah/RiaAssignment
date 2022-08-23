@@ -5,16 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class TrecksService {
+public class TreksService {
 
 
 
     private TrecksRepository repository;
 
-    public TrecksService(@Autowired TrecksRepository trecksRepository){
+    public TreksService(@Autowired TrecksRepository trecksRepository){
         this.repository = trecksRepository;
 
 

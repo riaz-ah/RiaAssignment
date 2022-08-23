@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Trecks {
     @Id
     private String id;
-
     private String treckId;
     private String name;
     private String startAt;

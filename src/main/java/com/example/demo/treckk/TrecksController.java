@@ -1,35 +1,30 @@
 package com.example.demo.treckk;
 
 
-import org.springframework.data.mongodb.core.MongoTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
-import javax.naming.Name;
-import java.util.List;
-
+@Slf4j
 @RestController
 public class TrecksController {
     @Autowired
-    TrecksService trecksService;
+    TreksService treksService;
 
 
 
     @GetMapping("/viewAlltrails")
     public ResponseEntity<?> viewTrails() {
+        log.info("Request received to view all trails");
         return ResponseEntity.status(200)
                 .header("message", "all trails found")
-                .body(trecksService.ViewTrails());
+                .body(treksService.ViewTrails());
     }
 
     @PostMapping("/enterTrail")
     public ResponseEntity<?> enterTrail(@RequestBody Trecks trecks) {
-        trecksService.enterTrail(trecks);
+        log.info("Request received to add a trails");
+        treksService.enterTrail(trecks);
         return ResponseEntity.status(200)
                 .header("message", "record saved")
                 .body("Added trail with id: " + trecks.getId());
@@ -37,16 +32,18 @@ public class TrecksController {
 
     @GetMapping("/findtrecks/{id}")
     public ResponseEntity<?> getTrail(@PathVariable String id) {
+        log.info("Request received to find a trek with the given id");
         return ResponseEntity.status(200)
                 .header("message", "trail found using id")
-                .body(trecksService.getTrailByTreckId(id));
+                .body(treksService.getTrailByTreckId(id));
     }
 
     @GetMapping("/findTrecks/")
     public ResponseEntity<?> findTrail(@RequestParam String name) {
+        log.info("Request received to find a trek by name");
         return ResponseEntity.status(200)
                 .header("message", "trail found using name")
-                .body(trecksService.findTrail(name));
+                .body(treksService.findTrail(name));
 
     }
 

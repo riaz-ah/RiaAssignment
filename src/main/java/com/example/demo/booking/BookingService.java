@@ -1,8 +1,10 @@
 package com.example.demo.booking;
 
 
+import com.example.demo.Exceptions.EmptyListCheckException;
+import com.example.demo.Exceptions.InvalidAgeException;
 import com.example.demo.treckk.Trecks;
-import com.example.demo.treckk.TrecksService;
+import com.example.demo.treckk.TreksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +13,12 @@ import java.util.List;
 @Service
 public class BookingService {
     private BookingRepository repository;
-    private TrecksService trecksService;
+    private TreksService treksService;
 
 
-    public BookingService(@Autowired BookingRepository bookingRepository, @Autowired TrecksService trecksService) {
+    public BookingService(@Autowired BookingRepository bookingRepository, @Autowired TreksService treksService) {
         this.repository = bookingRepository;
-        this.trecksService =trecksService;
+        this.treksService = treksService;
 
     }
 
@@ -28,7 +30,7 @@ public class BookingService {
 
     public String enterBooking(Booking booking ) throws EmptyListCheckException, InvalidAgeException {
             String treckId = booking.getTreckId();
-            List<Trecks> listByTreckId = trecksService.getTrailByTreckId(treckId);
+            List<Trecks> listByTreckId = treksService.getTrailByTreckId(treckId);
             if (listByTreckId.isEmpty()) {
 //                return "No Booking Found";
                 throw new EmptyListCheckException("No Booking Found");
