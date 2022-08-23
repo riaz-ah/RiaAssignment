@@ -1,4 +1,4 @@
-package com.example.demo.treckk;
+package com.example.demo.treck;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
-public class TrecksController {
+public class TreksController {
     @Autowired
     TreksService treksService;
 
 
 
-    @GetMapping("/viewAlltrails")
+    @GetMapping("/viewAllTrails")
     public ResponseEntity<?> viewTrails() {
         log.info("Request received to view all trails");
         return ResponseEntity.status(200)
@@ -22,23 +22,23 @@ public class TrecksController {
     }
 
     @PostMapping("/enterTrail")
-    public ResponseEntity<?> enterTrail(@RequestBody Trecks trecks) {
+    public ResponseEntity<?> enterTrail(@RequestBody Treks treks) {
         log.info("Request received to add a trails");
-        treksService.enterTrail(trecks);
+        treksService.enterTrail(treks);
         return ResponseEntity.status(200)
                 .header("message", "record saved")
-                .body("Added trail with id: " + trecks.getId());
+                .body("Added trail with id: " + treks.getId());
     }
 
-    @GetMapping("/findtrecks/{id}")
+    @GetMapping("/findTreks/{id}")
     public ResponseEntity<?> getTrail(@PathVariable String id) {
         log.info("Request received to find a trek with the given id");
         return ResponseEntity.status(200)
                 .header("message", "trail found using id")
-                .body(treksService.getTrailByTreckId(id));
+                .body(treksService.getTrailByTrekId(id));
     }
 
-    @GetMapping("/findTrecks/")
+    @GetMapping("/findTreks")
     public ResponseEntity<?> findTrail(@RequestParam String name) {
         log.info("Request received to find a trek by name");
         return ResponseEntity.status(200)

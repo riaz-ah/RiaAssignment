@@ -16,10 +16,12 @@ public class ExceptionHandlerClass {
     }
     @ExceptionHandler(InvalidAgeException.class)
     public ResponseEntity<String> handleAgeValidation(InvalidAgeException invalidAgeException){
+        log.error(" Invalid age Exception occurred: " , invalidAgeException);
         return new ResponseEntity<>("Age not valid", HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception exception){
+        log.error(" Some Exception occurred: " , exception);
         return new ResponseEntity<>("Unknown Error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

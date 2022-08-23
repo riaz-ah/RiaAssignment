@@ -3,8 +3,8 @@ package com.example.demo.booking;
 
 import com.example.demo.Exceptions.EmptyListCheckException;
 import com.example.demo.Exceptions.InvalidAgeException;
-import com.example.demo.treckk.Trecks;
-import com.example.demo.treckk.TreksService;
+import com.example.demo.treck.Treks;
+import com.example.demo.treck.TreksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +29,14 @@ public class BookingService {
 
 
     public String enterBooking(Booking booking ) throws EmptyListCheckException, InvalidAgeException {
-            String treckId = booking.getTreckId();
-            List<Trecks> listByTreckId = treksService.getTrailByTreckId(treckId);
-            if (listByTreckId.isEmpty()) {
+            String trekId = booking.getTrekId();
+            List<Treks> listByTrekId = treksService.getTrailByTrekId(trekId);
+            if (listByTrekId.isEmpty()) {
 //                return "No Booking Found";
                 throw new EmptyListCheckException("No Booking Found");
             }
 //            throw new EmptyListCheckException("No Booking Found");
-            Trecks object = listByTreckId.get(0);
+            Treks object = listByTrekId.get(0);
             if (booking.getPersonAge() >= object.getMaximumAge() ||
                     booking.getPersonAge() <= object.getMinimumAge()) {
 //                return "Invalid Age";
@@ -66,14 +66,14 @@ public class BookingService {
     }
 
 
-    public List<Booking> getBookingsByTreckId(String treckId) {
-        return repository.findByTreckId(treckId);
+    public List<Booking> getBookingsByTrekId(String trekId) {
+        return repository.findByTrekId(trekId);
     }
 
 
 
-    public List<Booking> getBookingsByTreckName(String treckName){
-        return repository.findByTreckName(treckName);
+    public List<Booking> getBookingsByTrekName(String trekName){
+        return repository.findByTrekName(trekName);
     }
 
 }

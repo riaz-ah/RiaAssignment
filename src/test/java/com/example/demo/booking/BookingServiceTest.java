@@ -2,8 +2,8 @@ package com.example.demo.booking;
 
 import com.example.demo.Exceptions.EmptyListCheckException;
 import com.example.demo.Exceptions.InvalidAgeException;
-import com.example.demo.treckk.Trecks;
-import com.example.demo.treckk.TreksService;
+import com.example.demo.treck.Treks;
+import com.example.demo.treck.TreksService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -39,24 +39,24 @@ class BookingServiceTest {
 
         P1B1.setBookingId("P1B1");
         P1B1.setPersonId("Person1");
-        P1B1.setTreckName("Blue Falls");
-        P1B1.setTreckId("Treck1");
+        P1B1.setTrekName("Blue Falls");
+        P1B1.setTrekId("Trek1");
         P1B1.setPersonAge(50);
 
         Booking P1B2 = new Booking();
 
         P1B2.setBookingId("P1B2");
         P1B2.setPersonId("Person1");
-        P1B2.setTreckName("Green Valley");
-        P1B2.setTreckId("Treck2");
+        P1B2.setTrekName("Green Valley");
+        P1B2.setTrekId("Trek2");
         P1B2.setPersonAge(50);
 
         Booking P1B3 = new Booking();
 
         P1B2.setBookingId("P1B3");
         P1B2.setPersonId("Person1");
-        P1B2.setTreckName("Brown Mountains");
-        P1B2.setTreckId("Treck3");
+        P1B2.setTrekName("Brown Mountains");
+        P1B2.setTrekId("Trek3");
         P1B2.setPersonAge(50);
 
         List<Booking> bookingList = new ArrayList<>();
@@ -75,16 +75,16 @@ class BookingServiceTest {
 
         PIB1.setBookingId("P1B1");
         PIB1.setPersonId("Person1");
-        PIB1.setTreckName("Blue Falls");
-        PIB1.setTreckId("Treck1");
+        PIB1.setTrekName("Blue Falls");
+        PIB1.setTrekId("Trek1");
         PIB1.setPersonAge(60);
 
-        Trecks T = new Trecks();
+        Treks T = new Treks();
         T.setMinimumAge(0);
         T.setMaximumAge(100);
-        List<Trecks> L = new ArrayList<>();
+        List<Treks> L = new ArrayList<>();
         L.add(T);
-        Mockito.when(treksService.getTrailByTreckId("Treck1")).thenReturn(L);
+        Mockito.when(treksService.getTrailByTrekId("Trek1")).thenReturn(L);
         Mockito.when(bookingRepository.save(PIB1)).thenReturn(PIB1);
         String response = bookingService.enterBooking(PIB1);
         assertThat(response).isEqualTo("Booking Added");
@@ -102,12 +102,12 @@ class BookingServiceTest {
 
         PIB1.setBookingId("P1B1");
         PIB1.setPersonId("Person1");
-        PIB1.setTreckName("Blue Falls");
-        PIB1.setTreckId("Treck1");
+        PIB1.setTrekName("Blue Falls");
+        PIB1.setTrekId("Treck1");
         PIB1.setPersonAge(60);
 
-        List<Trecks> L = new ArrayList<>();
-        Mockito.when(treksService.getTrailByTreckId("Treck1")).thenReturn(L);
+        List<Treks> L = new ArrayList<>();
+        Mockito.when(treksService.getTrailByTrekId("Treck1")).thenReturn(L);
 //            String response = bookingService.enterBooking(PIB1);
         Exception exception = assertThrows(EmptyListCheckException.class, () -> {
             bookingService.enterBooking(PIB1);
@@ -124,17 +124,17 @@ class BookingServiceTest {
 
         PIB1.setBookingId("P1B1");
         PIB1.setPersonId("Person1");
-        PIB1.setTreckName("Blue Falls");
-        PIB1.setTreckId("Treck1");
+        PIB1.setTrekName("Blue Falls");
+        PIB1.setTrekId("Treck1");
         PIB1.setPersonAge(120);
 
-        Trecks T = new Trecks();
+        Treks T = new Treks();
         T.setMinimumAge(0);
         T.setMaximumAge(100);
 
-        List<Trecks> L = new ArrayList<>();
+        List<Treks> L = new ArrayList<>();
         L.add(T);
-        Mockito.when(treksService.getTrailByTreckId("Treck1")).thenReturn(L);
+        Mockito.when(treksService.getTrailByTrekId("Trek1")).thenReturn(L);
 //        String response = bookingService.enterBooking(PIB1);
         Exception exception = assertThrows(InvalidAgeException.class, () -> {
             bookingService.enterBooking(PIB1);
@@ -155,8 +155,8 @@ class BookingServiceTest {
 
         P1B1.setBookingId("P1B1");
         P1B1.setPersonId("Person1");
-        P1B1.setTreckName("Blue Falls");
-        P1B1.setTreckId("Treck1");
+        P1B1.setTrekName("Blue Falls");
+        P1B1.setTrekId("Trek1");
         P1B1.setPersonAge(60);
         bookingService.deleteBooking("P1B1");
         Mockito.verify(bookingRepository,Mockito.atLeastOnce()).deleteById("P1B1");
@@ -168,8 +168,8 @@ class BookingServiceTest {
 
         PIB1.setBookingId("P1B1");
         PIB1.setPersonId("Person1");
-        PIB1.setTreckName("Blue Falls");
-        PIB1.setTreckId("Treck1");
+        PIB1.setTrekName("Blue Falls");
+        PIB1.setTrekId("Trek1");
         PIB1.setPersonAge(60);
 
         List<Booking> bookingList3 = new ArrayList<>();
@@ -181,19 +181,19 @@ class BookingServiceTest {
     }
 //
     @Test
-    void getByTreckId(){
+    void getByTrekId(){
         Booking b = new Booking();
 
         b.setBookingId("P1B1");
         b.setPersonId("Person1");
-        b.setTreckName("Blue Falls");
-        b.setTreckId("Treck1");
+        b.setTrekName("Blue Falls");
+        b.setTrekId("Trek1");
         b.setPersonAge(60);
 
         List<Booking> bookingList2 = new ArrayList<>();
         bookingList2.add(b);
-        Mockito.when(bookingRepository.findByTreckId("b")).thenReturn(bookingList2);
-        List<Booking> response = bookingService.getBookingsByTreckId("b");
+        Mockito.when(bookingRepository.findByTrekId("b")).thenReturn(bookingList2);
+        List<Booking> response = bookingService.getBookingsByTrekId("b");
         assertThat(response.size()).isEqualTo(bookingList2.size());
         assertThat(response).isEqualTo(bookingList2);
     }

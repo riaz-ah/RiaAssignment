@@ -1,4 +1,4 @@
-package com.example.demo.treckk;
+package com.example.demo.treck;
 
 
 import lombok.Data;
@@ -7,11 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Data
-@Document(collection = "Trecks")
-public class Trecks {
+@Document(collection = "Treks")
+public class Treks {
     @Id
     private String id;
-    private String treckId;
+    private String trekId;
     private String name;
     private String startAt;
     private String endAt;

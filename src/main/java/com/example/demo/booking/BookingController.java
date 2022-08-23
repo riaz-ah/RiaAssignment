@@ -56,20 +56,20 @@ public class BookingController {
 
     }
 
-    @GetMapping("/getBookingByTreckId")
-    public ResponseEntity<?> getBookings(@RequestParam String treckId){
-        log.info("Request received to view booking with a given treckId");
+    @GetMapping("/getBookingsByTrekId")
+    public ResponseEntity<?> getBookings(@RequestParam String trekId){
+        log.info("Request received to view booking with a given trekId");
         return ResponseEntity.status(200)
-                .header("message", "Booking found using treckId")
-                .body(bookingService.getBookingsByTreckId(treckId));
+                .header("message", "Booking found using trekId")
+                .body(bookingService.getBookingsByTrekId(trekId));
     }
 
-    @GetMapping("/getBookingByTreckName/{treckName}")
-    public ResponseEntity<?> getBookingsByTreckName(@PathVariable String treckName){
-        log.info("Request received to view booking with a given treckName");
+    @GetMapping("/getBookingByTrekName/{trekName}")
+    public ResponseEntity<?> getBookingsByTrekName(@PathVariable String trekName){
+        log.info("Request received to view booking with a given trekName");
         return ResponseEntity.status(200)
-                .header("message", "Booking found using treckName")
-                .body(bookingService.getBookingsByTreckName(treckName));
+                .header("message", "Booking found using trekName")
+                .body(bookingService.getBookingsByTrekName(trekName));
     }
 
 

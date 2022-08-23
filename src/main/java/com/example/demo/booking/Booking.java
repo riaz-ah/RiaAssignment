@@ -14,8 +14,8 @@ public class Booking {
 
     private String bookingId;
     private String personId;
-    private String treckName;
-    private String treckId;
+    private String trekName;
+    private String trekId;
     private int personAge;
 
     }

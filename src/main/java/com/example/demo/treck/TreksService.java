@@ -1,4 +1,4 @@
-package com.example.demo.treckk;
+package com.example.demo.treck;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,28 +11,28 @@ public class TreksService {
 
 
 
-    private TrecksRepository repository;
+    private TreksRepository repository;
 
-    public TreksService(@Autowired TrecksRepository trecksRepository){
-        this.repository = trecksRepository;
+    public TreksService(@Autowired TreksRepository treksRepository){
+        this.repository = treksRepository;
 
 
     }
 
-    public List<Trecks> ViewTrails() {
+    public List<Treks> ViewTrails() {
         return repository.findAll();
     }
 
-    public Trecks enterTrail(Trecks trecks) {
+    public Treks enterTrail(Treks trecks) {
         return repository.save(trecks);
 //        return "Added trail with id: " + trecks.getId();
     }
 
-    public List<Trecks> getTrailByTreckId(String id) {
-        return repository.findByTreckId(id);
+    public List<Treks> getTrailByTrekId(String id) {
+        return repository.findByTrekId(id);
     }
 
-    public List<Trecks> findTrail(String name) {
+    public List<Treks> findTrail(String name) {
         return repository.findByName(name);
 //        object
     }
