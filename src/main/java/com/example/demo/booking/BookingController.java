@@ -54,6 +54,7 @@ public class BookingController {
                 .header("message", "trail found using personId")
                 .body(bookingService.getBookingsByPersonId(personId));
 
+
     }
 
     @GetMapping("/getBookingsByTrekId")

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandlerClass {
+
     @ExceptionHandler(EmptyListCheckException.class)
     public ResponseEntity<String> handleListCheck(EmptyListCheckException emptyListCheckException){
         log.error(" Empty List Check Exception occurred: " , emptyListCheckException);
