@@ -25,3 +25,4 @@ public class ExceptionHandlerClass {
         return new ResponseEntity<>("Unknown Error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
+//just adding some comment here !!
