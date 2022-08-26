@@ -67,6 +67,7 @@ public class TreksControllerTest {
         assertThat(HttpStatus.OK.value()).isEqualTo(response.getStatus());
         assertEquals(HttpStatus.OK.value(), response.getStatus());
 
+        
     }
 
     private String mapToJson(Object object) throws JsonProcessingException {

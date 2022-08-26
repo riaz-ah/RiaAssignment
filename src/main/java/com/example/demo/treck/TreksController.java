@@ -13,12 +13,9 @@ public class TreksController {
     public TreksController(@Autowired TreksService treksService){
         this.service = treksService;
 
-
     }
     @Autowired
     TreksService treksService;
-
-
 
     @GetMapping("/viewAllTrails")
     public ResponseEntity<?> viewTrails() {

@@ -33,8 +33,6 @@ public class TreksService {
 //        object
     }
 
-
-
 //    public List<Treks> getTrail(String id) {
 //        return repository.findById();
 //    }
