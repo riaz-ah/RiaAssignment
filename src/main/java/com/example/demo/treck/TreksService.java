@@ -9,14 +9,10 @@ import java.util.List;
 @Service
 public class TreksService {
 
-
-
     private TreksRepository repository;
 
     public TreksService(@Autowired TreksRepository treksRepository){
         this.repository = treksRepository;
-
-
     }
 
     public List<Treks> ViewTrails() {
@@ -25,7 +21,7 @@ public class TreksService {
 
     public Treks enterTrail(Treks trecks) {
         return repository.save(trecks);
-//        return "Added trail with id: " + trecks.getId();
+//        return "Added trail with id: " + treks.getId();
     }
 
     public List<Treks> getTrailByTrekId(String id) {
@@ -38,7 +34,8 @@ public class TreksService {
     }
 
 
-//    public List<Trecks> getTrail(String id) {
+
+//    public List<Treks> getTrail(String id) {
 //        return repository.findById();
 //    }
 }
