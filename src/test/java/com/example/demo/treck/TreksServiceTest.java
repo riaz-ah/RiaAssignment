@@ -9,8 +9,6 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
-
-
 @ExtendWith(MockitoExtension.class)
 class TreksServiceTest {
     private TreksService treksService;
