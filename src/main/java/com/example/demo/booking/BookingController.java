@@ -4,7 +4,9 @@ package com.example.demo.booking;
 import com.example.demo.Exceptions.EmptyListCheckException;
 import com.example.demo.Exceptions.InvalidAgeException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,7 @@ public class BookingController {
                 .header("message", "all trails found")
                 .body(bookingService.ViewBooking());
     }
+
 
     @PostMapping("/enterBooking")
     public ResponseEntity <?> enterBooking(@RequestBody Booking booking) throws InvalidAgeException, EmptyListCheckException {
